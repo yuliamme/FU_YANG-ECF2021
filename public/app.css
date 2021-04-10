@@ -1,0 +1,232 @@
+/***************************************************
+ * CSS Reset
+ * https://github.com/hankchizljaw/modern-css-reset
+ ***************************************************/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+    padding-left: 0;
+}
+html:focus-within {
+    scroll-behavior: smooth;
+}
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/**************
+ * APP STYLES
+ **************/
+
+:root {
+    font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+
+.flow > * + * {
+    margin-top: 1rem;
+}
+
+header.topnav {
+    border-bottom: 1px solid #ccc;
+}
+header.topnav .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 110ch;
+    margin: 0 auto;
+}
+
+.logo {
+    text-decoration: none;
+    color: inherit;
+    font-family: "Poppins", sans-serif;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+nav > * {
+    margin: 1rem;
+}
+
+nav a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+main {
+    max-width: 80ch;
+    margin: 5rem auto;
+    padding: 1rem;
+}
+
+.anime-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-gap: 4rem;
+}
+
+.anime-list li {
+    padding: 2rem;
+    outline: 2px dotted;
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.anime-list img {
+    border: 4px solid;
+}
+
+.anime-list h2 {
+    font-size: 1.1rem;
+}
+
+.anime .actions {
+    display: flex;
+    margin: -1rem;
+}
+.anime .actions > * {
+    margin: 1rem;
+}
+
+.cta {
+    cursor: pointer;
+    border: 2px solid;
+    text-align: center;
+    padding: 0.25rem;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: inherit;
+    box-shadow: 0.25rem 0.25rem 0 black;
+    background: white;
+}
+
+article > * + * {
+    margin-top: 4rem;
+}
+
+.anime h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+}
+
+.anime img {
+    border: 2px solid;
+    max-width: 10rem;
+    margin-right: 4rem;
+    box-shadow: 0.25rem 0.25rem 0 black;
+}
+
+.anime--header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+article.anime {
+    max-width: 65ch;
+    margin: 0 auto;
+}
+
+.signup h1,
+.login h1 {
+    margin-bottom: 3rem;
+}
+
+label,
+input {
+    display: block;
+}
+
+input {
+    background: none;
+    border: 2px solid;
+    padding: 0.25rem;
+}
+
+.login form > * + *,
+.signup form > * + *,
+.add-review form > * + * {
+    margin-top: 1.5rem;
+}
+
+.input-group > * + * {
+    margin-top: 0.5rem;
+}
+
+.signup,
+.login,
+.add-review {
+    display: grid;
+    place-items: center;
+}
