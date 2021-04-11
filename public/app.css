@@ -230,3 +230,12 @@ input {
     display: grid;
     place-items: center;
 }
+
+
+.review {
+    padding-bottom: 0.5rem;
+}
+
+.timestamp > *:first-child {
+    margin-right: 3rem;
+}

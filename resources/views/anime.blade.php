@@ -22,15 +22,26 @@
       </div>
     </div>
 
+{{--      @yield('reviews')--}}
+
       <div class="reviews">
-          @foreach($reviews as $review)
-              <div class="flow">
-                  <h2>{{ $review->rating }}</h2>
-                  <p>{{ $review->comment }}</p>
-                  <p>{{ $review->created_at->diffForHumans() }}</p>
-{{--                  <p>{{ $review->created_at->format('d/m/Y H:i') }}</p>--}}
-              </div>
-          @endforeach
+
+          @if(count($reviews) > 0)
+              @foreach($reviews as $review)
+                  <div class="review">
+                      <h2><a href="/user/{{ $review->user->id }}"> {{ $review->user->username }} </a></h2>
+                      <h3>Rating : {{ $review->rating }} / 10</h3>
+                      <p>{{ $review->comment }}</p>
+                      <div class="timestamp">
+                          <small>{{ $review->created_at->diffForHumans() }}</small>
+                          <small>{{ $review->created_at->format('d/m/Y H:i') }}</small>
+                      </div>
+                  </div>
+              @endforeach
+          @else
+              <p>No Reviews found. Be the first to write a review!</p>
+          @endif
+
       </div>
 
   </article>

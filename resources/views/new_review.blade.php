@@ -4,16 +4,18 @@
   </x-slot>
 
     <div class="add-review">
-        <form action="/anime/{id}/new_review" enctype="multipart/form-data" method="get">
-        @csrf
+{{--        <form action="/anime/{id}" enctype="multipart/form-data" method="post">--}}
+            <form method="POST" enctype="multipart/form-data" action="{{ url('/') }}">
+
+            @csrf
 
             <div class="row">
                 <h1>Nouvelle Critique de {{ $anime->title }}</h1>
             </div>
 
             <div class="input-group">
-                <label for="rating">Rating</label>
-                <input id="rating" name="rating" value="{{ old('rating') }}" required>
+                <label for="rating">Rating (from 0 to 10)</label>
+                <input id="rating" name="rating" type="number" step="1" min="0" max="10" value="{{ old('rating') }}" required>
                 @error('rating')
                 <p class="error">{{ $message }}</p>
                 @enderror

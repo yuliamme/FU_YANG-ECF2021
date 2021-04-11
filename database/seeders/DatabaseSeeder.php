@@ -50,6 +50,12 @@ class DatabaseSeeder extends Seeder
         'cover' => 'gto.jpg',
       ]);
 
+        DB::table('animes')->insert([
+            'title' => 'a meme',
+            'description' => 'this is a meme... not an anime',
+            'cover' => 'meme.png',
+        ]);
+
 
 
 
@@ -65,7 +71,7 @@ class DatabaseSeeder extends Seeder
 
       DB::table('reviews')->insert([
             'rating' => 4,
-            'comment' => 'a random seed comment',
+            'comment' => 'a random seed comment toto',
             'user_id' => 1,
             'anime_id' => 1,
             'created_at' => '2019-03-03 08:30:20',
@@ -85,6 +91,22 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'anime_id' => 2,
           'created_at' => '2021-04-09 08:30:20',
+        ]);
+
+        DB::table('reviews')->insert([
+            'rating' => 4,
+            'comment' => 'a random seed comment lalala coco',
+            'user_id' => 2,
+            'anime_id' => 2,
+            'created_at' => '2021-04-09 08:30:20',
+        ]);
+
+        DB::table('reviews')->insert([
+            'rating' => 9,
+            'comment' => 'i want a meme coco',
+            'user_id' => 2,
+            'anime_id' => 8,
+            'created_at' => '2021-04-09 12:50:20',
         ]);
     }
 }

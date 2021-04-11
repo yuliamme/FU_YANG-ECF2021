@@ -10,11 +10,11 @@ class Review extends Model
     protected $guarded = [];
 
     public function user() {
-//        return $this->belongsTo(User::class, 'id');
-        return $this->belongsTo('User', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
+//        return $this->belongsTo('User', 'user_id');
     }
 
-//    public function anime() {
-//        return $this->belongsTo(Anime::class, 'id');
-//    }
+    public function anime() {
+        return $this->belongsTo(Anime::class, 'anime_id');
+    }
 }

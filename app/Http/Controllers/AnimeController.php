@@ -19,12 +19,26 @@ class AnimeController extends Controller
 
     public function show($id) {
 
-        $anime  = anime::whereId($id)->first();
+        $anime  = Anime::find($id);
 
         return view('anime', [
-            "reviews" => $anime->reviews,
             "anime" => $anime,
+            "reviews" => $anime->reviews,
             ]);
+
+    }
+
+    public function rank() {
+
+        $animes = Anime::join('reviews', 'reviews.anime_id', '=', 'animes.id')
+            ->select(DB::raw('coalesce(avg(rating),0) as average, animes.*'))
+            ->groupBy('anime_id')
+            ->orderBy('average','DESC')
+            ->get();
+
+        return view('top', [
+            'animes' => $animes,
+        ]);
 
     }
 

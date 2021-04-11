@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Anime;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AnimeController;
+use App\Http\Controllers\UserController;
+
 
 
 /*
@@ -27,49 +29,31 @@ Route::get('/anime/{id}', [AnimeController::class, 'show'])->name('anime.show');
 
 Route::get('/anime/{id}/new_review', [ReviewController::class, 'create'])->name('review.create');
 
-
-Route::get('/anime/{id}/new_review', function ($id) {
-    $anime = DB::select("SELECT * FROM animes WHERE id = ?", [$id])[0];
-  return view('new_review', ["anime" => $anime]);
-});
-//Route::get('/anime/{id}/new_review', [ReviewController::class, 'create']);
+//Route::post('/anime/{id}', [ReviewController::class, 'store'])->name('review.store');
+Route::post('/',[ReviewController::class, 'store'])->name('new_review');
 
 
-Route::get('/login', function () {
-  return view('login');
-});
 
-Route::post('/login', function (Request $request) {
-  $validated = $request->validate([
-    "username" => "required",
-    "password" => "required",
-  ]);
-  if (Auth::attempt($validated)) {
-    return redirect()->intended('/');
-  }
-  return back()->withErrors([
-    'username' => 'The provided credentials do not match our records.',
-  ]);
-});
+Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
 
-Route::get('/signup', function () {
-  return view('signup');
-});
+Route::get('/top', [AnimeController::class, 'rank'])->name('anime.rank');
 
-Route::post('signup', function (Request $request) {
-  $validated = $request->validate([
-    "username" => "required",
-    "password" => "required",
-    "password_confirmation" => "required|same:password"
-  ]);
-  $user = new User();
-  $user->username = $validated["username"];
-  $user->password = Hash::make($validated["password"]);
-  $user->save();
-  Auth::login($user);
 
-  return redirect('/');
-});
+
+Route::get('/login', [UserController::class, 'login']);
+
+Route::post('/login', [UserController::class, 'loginAction']);
+
+Route::get('/signup', [UserController::class, 'signup']);
+
+Route::post('/signup', [UserController::class, 'signupAction']);
+
+
+
+Route::post('/signout', [UserController::class, 'logout']);
+
+
+
 
 Route::post('signout', function (Request $request) {
   Auth::logout();
@@ -77,3 +61,8 @@ Route::post('signout', function (Request $request) {
   $request->session()->regenerateToken();
   return redirect('/');
 });
+
+
+
+//Auth::routes();
+
