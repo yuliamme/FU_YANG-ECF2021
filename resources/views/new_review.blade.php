@@ -23,7 +23,7 @@
 
             <div class="input-group">
                 <label for="comment">Comment</label>
-                <input id="comment" name="comment" value="{{ old('comment') }}" required>
+                <textarea id="comment" name="comment" maxlength="500" value="{{ old('comment') }}" required></textarea>
                 @error('comment')
                 <p class="error">{{ $message }}</p>
                 @enderror

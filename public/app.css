@@ -208,7 +208,7 @@ input {
     display: block;
 }
 
-input {
+input, textarea {
     background: none;
     border: 2px solid;
     padding: 0.25rem;
@@ -231,6 +231,10 @@ input {
     place-items: center;
 }
 
+textarea#comment {
+    resize: vertical;
+    width: 100%;
+}
 
 .review {
     padding-bottom: 0.5rem;
@@ -239,3 +243,5 @@ input {
 .timestamp > *:first-child {
     margin-right: 3rem;
 }
+
+
