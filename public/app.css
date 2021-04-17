@@ -160,7 +160,6 @@ main {
     cursor: pointer;
     border: 2px solid;
     text-align: center;
-    padding: 0.25rem;
     text-decoration: none;
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -216,7 +215,9 @@ input, textarea {
 
 .login form > * + *,
 .signup form > * + *,
-.add-review form > * + * {
+.add-review form > * + *,
+.edit-review form > * + *,
+.add-anime form > * + * {
     margin-top: 1.5rem;
 }
 
@@ -226,14 +227,25 @@ input, textarea {
 
 .signup,
 .login,
-.add-review {
+.add-review,
+.edit-review,
+.add-anime {
     display: grid;
     place-items: center;
 }
 
-textarea#comment {
+.add-anime form {
+    width: 80%;
+}
+
+.add-anime form input {
+    width: 100%;
+}
+
+textarea {
     resize: vertical;
     width: 100%;
+    min-height: 100px;
 }
 
 .review {
@@ -244,4 +256,11 @@ textarea#comment {
     margin-right: 3rem;
 }
 
+a {
+    text-decoration: none;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
 

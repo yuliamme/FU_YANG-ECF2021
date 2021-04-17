@@ -12,7 +12,7 @@
 <header class="topnav">
     <div class="inner">
         <nav>
-            <a class="logo" href="/">Anime Ranking</a>
+            <a class="logo" href="/anime">Anime Ranking</a>
             <a href="/top">Top</a>
             <a href="/watchlist">Ma watchlist</a>
         </nav>

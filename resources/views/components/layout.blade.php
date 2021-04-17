@@ -17,6 +17,7 @@
           <a class="logo" href="/">Anime Ranking</a>
           <a href="/top">Top</a>
           <a href="/watchlist">Ma watchlist</a>
+            <a href="/anime/create">Add Anime Film</a>
         </nav>
         <nav>
           @auth

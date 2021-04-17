@@ -19,6 +19,8 @@
                             <small>{{ $review->created_at->diffForHumans() }}</small>
                             <small>{{ $review->created_at->format('d/m/Y H:i') }}</small>
                         </div>
+
+                        <a href="/review/{{ $review->id }}">detail</a>
                     </div>
                 @endforeach
             @else

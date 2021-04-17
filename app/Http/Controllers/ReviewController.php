@@ -26,23 +26,18 @@ class ReviewController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+//    public function store(Request $request) {
+    public function store() {
 
-//        $data = request() -> validate([
-//            'rating' => ['required', 'integer' ],
-//            'comment' => ['required', 'max:255' ],
-//            'anime_id' => 'required',
+        $data = request() -> validate([
+            'rating' => ['required', 'integer' ],
+            'comment' => ['required', 'max:255' ],
+            'anime_id' => 'required',
 //            'user_id' => 'required',
-//        ]);
-
-        dd($request);
-        return redirect('/');
-        dd([
-            'rating' => $data['rating'],
-            'comment' => $data['comment'],
-            'anime_id' => $id,
-            'user_id' => auth()->user()->id,
         ]);
+
+        dd($data);
+
 
 //        auth()->user()->reviews()->create($data);
         auth()->user()->reviews->create([
@@ -55,17 +50,33 @@ class ReviewController extends Controller
 //        return redirect('/anime/'.$id);
     }
 
-    public function edit() {
+    public function edit($id) {
 
+        $review = Review::find($id);
+        return view('review/edit', [
+            'review' => $review,
+        ]);
     }
 
-    public function update() {
+    public function update($id) {
+        $data = request() -> validate([
+            'rating' => ['required', 'integer' ],
+            'comment' => ['required', 'max:255' ],
+        ]);
+
+        $review = Review::find($id);
+        $review->update($data);
+
+        return redirect('/review/'.$id);
 
     }
 
     public function show($id) {
-        $post = Post::find($id);
-        return view('review/show');
+
+        $review = Review::find($id);
+        return view('review/show', [
+            'review' => $review,
+        ]);
 
     }
 

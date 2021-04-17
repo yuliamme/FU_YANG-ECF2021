@@ -4,8 +4,8 @@
   </x-slot>
 
     <div class="add-review">
-{{--        <form action="/anime/{id}" enctype="multipart/form-data" method="post">--}}
-            <form method="POST" enctype="multipart/form-data" action="{{ url('/') }}">
+{{--                <form method="POST" action='/anime/{id}/new_review'>--}}
+                    <form action="/anime/{{ $anime->id }}/review" enctype="multipart/form-data" method="POST">
 
             @csrf
 
@@ -23,11 +23,16 @@
 
             <div class="input-group">
                 <label for="comment">Comment</label>
-                <textarea id="comment" name="comment" maxlength="500" value="{{ old('comment') }}" required></textarea>
+                <textarea id="comment" name="comment" maxlength="500" required></textarea>
                 @error('comment')
                 <p class="error">{{ $message }}</p>
                 @enderror
             </div>
+
+{{--                        @auth--}}
+{{--                            <input type="hidden" value="{{ Auth::user()->id }}" name="userid">--}}
+{{--                        @endauth--}}
+                        <input type="hidden" value="{{ $anime -> id }}" name="anime_id">
 
             <div class="row p-10">
                 <button class="cta">Add New Review</button>

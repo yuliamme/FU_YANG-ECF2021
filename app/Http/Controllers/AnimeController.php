@@ -12,37 +12,44 @@ class AnimeController extends Controller
 
         $animes = Anime::all();
 
-        return view('welcome', [
+        return view('anime/index', [
             'animes' => $animes,
         ]);
     }
+
 
     public function show($id) {
 
         $anime  = Anime::find($id);
 
-        return view('anime', [
+        return view('anime/show', [
             "anime" => $anime,
             "reviews" => $anime->reviews,
             ]);
 
     }
 
-    public function sortList () {
-        // join 3 tables 'reviews', 'animes' and 'user'
-        $toplist = DB::table('reviews')
-            ->join('animes', 'reviews.animeid', '=', 'animes.id')
-            ->select(array('animes.*',
-                DB::raw('round(AVG(rating),2) as ratings_average')))
-            // make a group according to animes;id
-            ->groupby('animes.id')
-            // make a order according to rating-average from high to low
-            ->orderBy('ratings_average', 'DESC')
-            ->get();
-        // views
-        return view('top', ["toplists" => $toplist]);
+    public function create() {
+        return view('anime/create');
+    }
+
+    public function store() {
+
+        $data = request() -> validate([
+            'title' => ['required', 'max:50' ],
+            'description' => ['required', 'max:255' ],
+//            'user_id' => 'required',
+        ]);
+
+//        dd($data);
+        $anime = Anime::create($data);
+//        dd($anime);
+
+        return redirect('/');
 
     }
+
+
 
 
     public function rank() {

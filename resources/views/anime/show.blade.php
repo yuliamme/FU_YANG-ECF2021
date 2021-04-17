@@ -1,12 +1,18 @@
 <x-layout>
   <x-slot name="title">
     {{ $anime->title }}
+
+
+      {{ $anime['title'] }}
   </x-slot>
 
   <article class="anime">
     <header class="anime--header">
       <div>
-        <img alt="" src="/covers/{{ $anime->cover }}" />
+
+{{--          {{var_dump($anime)}}--}}
+
+                  <img alt="" src="/covers/{{ $anime->cover }}" />
       </div>
       <h1>{{ $anime->title }}</h1>
     </header>
@@ -26,6 +32,8 @@
 
       <div class="reviews">
 
+{{--          @if($reviews = $anime->reviews)@endif--}}
+
           @if(count($reviews) > 0)
               @foreach($reviews as $review)
                   <div class="review">
@@ -36,7 +44,10 @@
                           <small>{{ $review->created_at->diffForHumans() }}</small>
                           <small>{{ $review->created_at->format('d/m/Y H:i') }}</small>
                       </div>
+
+                      <a href="/review/{{ $review->id }}">detail</a>
                   </div>
+
               @endforeach
           @else
               <p>No Reviews found. Be the first to write a review!</p>
