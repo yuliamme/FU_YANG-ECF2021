@@ -74,21 +74,27 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('coco'),
         ]);
 
+
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
       DB::table('reviews')->insert([
             'rating' => 4,
             'comment' => 'a random seed comment toto',
-            'user_id' => User::find(1)->id,
-            'anime_id' => Anime::find(1)->id,
+            'user_id' => 1,
+            'anime_id' => 1,
+//            'user_id' => User::find(1)->id,
+//            'anime_id' => Anime::find(1)->id,
             'created_at' => '2019-03-03 08:30:20',
         ]);
 
       DB::table('reviews')->insert([
             'rating' => 3,
             'comment' => 'some random seed comment blah coco',
-//            'user_id' => 2,
-//            'anime_id' => 1,
-          'user_id' => User::find(2)->id,
-          'anime_id' => Anime::find(1)->id,
+            'user_id' => 2,
+            'anime_id' => 1,
+//          'user_id' => User::find(2)->id,
+//          'anime_id' => Anime::find(1)->id,
           'created_at' => '2022-03-03 15:30:20',
         ]);
 
@@ -115,5 +121,7 @@ class DatabaseSeeder extends Seeder
             'anime_id' => 8,
             'created_at' => '2021-04-09 12:50:20',
         ]);
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
