@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserController extends Controller
@@ -24,6 +25,7 @@ class UserController extends Controller
             "username" => "required",
             "password" => "required",
         ]);
+
         if (Auth::attempt($data)) {
             return redirect()->intended('/');
         }
@@ -41,9 +43,11 @@ class UserController extends Controller
             "password_confirmation" => "required|same:password"
         ]);
 
+//        dd($data);
+
         User::create([
             "username" => $data["username"],
-            "password" => $data["password"],
+            "password" => Hash::make($data["password"]),
         ]);
 
 //        $user = new User();
@@ -54,6 +58,10 @@ class UserController extends Controller
 
         return redirect('/');
 
+    }
+
+    public function logout() {
+//        return view('login');
     }
 
     public function show($id) {

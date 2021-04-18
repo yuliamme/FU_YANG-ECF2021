@@ -4,6 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Anime;
+use App\Models\User;
+
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -61,27 +66,29 @@ class DatabaseSeeder extends Seeder
 
       DB::table('users')->insert([
             'username' => 'toto',
-            'password' => 'toto',
+            'password' => Hash::make('toto'),
         ]);
 
       DB::table('users')->insert([
             'username' => 'coco',
-            'password' => 'coco',
+            'password' => Hash::make('coco'),
         ]);
 
       DB::table('reviews')->insert([
             'rating' => 4,
             'comment' => 'a random seed comment toto',
-            'user_id' => 1,
-            'anime_id' => 1,
+            'user_id' => User::find(1)->id,
+            'anime_id' => Anime::find(1)->id,
             'created_at' => '2019-03-03 08:30:20',
         ]);
 
       DB::table('reviews')->insert([
             'rating' => 3,
             'comment' => 'some random seed comment blah coco',
-            'user_id' => 2,
-            'anime_id' => 1,
+//            'user_id' => 2,
+//            'anime_id' => 1,
+          'user_id' => User::find(2)->id,
+          'anime_id' => Anime::find(1)->id,
           'created_at' => '2022-03-03 15:30:20',
         ]);
 

@@ -54,21 +54,20 @@ Route::post('/review/{id}', [ReviewController::class, 'update'])->name('review.u
 
 Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
 
-
-//Route::post('/anime/{id}', [ReviewController::class, 'store'])->name('review.store');
-//Route::post('/',[ReviewController::class, 'store'])->name('new_review');
+// --------------- user : show , login , signup , logout ---------------
 
 Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
 
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('user.login');
 
 Route::post('/login', [UserController::class, 'loginAction']);
 
-Route::get('/signup', [UserController::class, 'signup']);
+Route::get('/signup', [UserController::class, 'signup'])->name('user.signup');
 
 Route::post('/signup', [UserController::class, 'signupAction']);
 
-Route::post('/signout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout']);
+
 
 Route::post('signout', function (Request $request) {
   Auth::logout();
