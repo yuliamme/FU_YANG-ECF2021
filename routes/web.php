@@ -44,13 +44,15 @@ Route::get('/anime/{id}/new_review', [ReviewController::class, 'create'])->name(
 
 Route::post('/anime/{id}/review', [ReviewController::class, 'store']);
 
-// --------------- /review/{id}/*  individual review : show , edit , update ---------------
+// --------------- /review/{id}/*  individual review : show , edit , update , destroy ---------------
 
 Route::get('/review/{id}', [ReviewController::class, 'show'])->name('review.show');
 
 Route::get('/review/{id}/edit', [ReviewController::class, 'edit'])->name('review.edit');
 
 Route::post('/review/{id}', [ReviewController::class, 'update'])->name('review.update');
+
+Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
 
 
 //Route::post('/anime/{id}', [ReviewController::class, 'store'])->name('review.store');

@@ -10,9 +10,7 @@
 {{--            @method('PUT')--}}
             @csrf
 
-            <div class="row">
-                <h1>Edit my review of <a href="/anime/{{$review->anime->id}}"> {{ $anime }} </a></h1>
-            </div>
+            <h1>Edit my review of <a href="/anime/{{$review->anime->id}}"> {{ $anime }} </a></h1>
 
             <div class="input-group">
                 <label for="rating">Rating (from 0 to 10)</label>
@@ -24,14 +22,14 @@
 
             <div class="input-group">
                 <label for="comment">Comment</label>
-                <textarea id="comment" name="comment" maxlength="500" required> {{ $review->comment }} </textarea>
+                <textarea id="comment" name="comment" maxlength="1000" required> {{ $review->comment }} </textarea>
                 @error('comment')
                 <p class="error">{{ $message }}</p>
                 @enderror
             </div>
 
-            <div class="row mt-10">
-                <button class="cta">Submit</button>
+            <div class="input-group">
+                <button type="submit" class="cta">Submit</button>
             </div>
 
         </form>

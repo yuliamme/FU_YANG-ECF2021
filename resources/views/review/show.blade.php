@@ -18,9 +18,18 @@
                 <small>{{ $review->created_at->format('d/m/Y H:i') }}</small>
             </div>
 
-            <div class="row mt-10">
-                <button class="cta"><a href="/review/{{ $review->id }}/edit">Edit Review</a></button>
+            <div class="actions">
+                <div><a class="cta" href="/review/{{ $review->id }}/edit">Edit Review</a></div>
+
+                <form action="/review/{{ $review->id }}" method="POST">
+                    {{csrf_field()}}
+                    {{method_field('DELETE')}}
+{{--                    <input type="hidden" name="_method" value="DELETE">--}}
+                    <button type="submit" class="cta">Delete Review</button>
+                </form>
             </div>
+
+
         </div>
 
         <div>

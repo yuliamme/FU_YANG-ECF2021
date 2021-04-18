@@ -36,8 +36,8 @@ class AnimeController extends Controller
     public function store() {
 
         $data = request() -> validate([
-            'title' => ['required', 'max:50' ],
-            'description' => ['required', 'max:255' ],
+            'title' => ['required', 'max:100' ],
+            'description' => ['required', 'max:1000' ],
 //            'user_id' => 'required',
         ]);
 

@@ -27,27 +27,31 @@ class ReviewController extends Controller
     }
 
 //    public function store(Request $request) {
-    public function store() {
+    public function store($id) {
 
         $data = request() -> validate([
             'rating' => ['required', 'integer' ],
-            'comment' => ['required', 'max:255' ],
+            'comment' => ['required', 'max:1000' ],
             'anime_id' => 'required',
 //            'user_id' => 'required',
         ]);
 
-        dd($data);
+        $data['user_id'] = 2;
+
+//        dd($data);
 
 
 //        auth()->user()->reviews()->create($data);
-        auth()->user()->reviews->create([
-            'rating' => $data['rating'],
-            'comment' => $data['comment'],
-            'anime_id' => $id,
-            'user_id' => auth()->user()->id,
-        ]);
+//        auth()->user()->reviews->create([
+//            'rating' => $data['rating'],
+//            'comment' => $data['comment'],
+//            'anime_id' => $id,
+//            'user_id' => auth()->user()->id,
+//        ]);
+        $review = Review::create($data);
 
-//        return redirect('/anime/'.$id);
+//        dd($review);
+        return redirect('/anime/'.$id);
     }
 
     public function edit($id) {
@@ -61,7 +65,7 @@ class ReviewController extends Controller
     public function update($id) {
         $data = request() -> validate([
             'rating' => ['required', 'integer' ],
-            'comment' => ['required', 'max:255' ],
+            'comment' => ['required', 'max:1000' ],
         ]);
 
         $review = Review::find($id);
@@ -80,8 +84,13 @@ class ReviewController extends Controller
 
     }
 
-    public function destroy() {
+    public function destroy($id) {
+        $review = Review::find($id);
+        $anime_id = $review->anime_id;
 
+        $review->delete();
+
+        return redirect('/anime/'.$anime_id);
     }
 
 

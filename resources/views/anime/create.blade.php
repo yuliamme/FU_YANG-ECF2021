@@ -18,14 +18,14 @@
 
         <div class="input-group">
             <label for="description">Description</label>
-            <textarea name="description" maxlength="500" value="{{ old('comment') }}" placeholder="Anime Description" required></textarea>
+            <textarea name="description" maxlength="1000" value="{{ old('comment') }}" placeholder="Anime Description" required></textarea>
             @error('comment')
             <p class="error">{{ $message }}</p>
             @enderror
         </div>
 
-        <div class="row p-10">
-            <button class="cta">Add New Anime</button>
+        <div class="input-group">
+            <button type="submit" class="cta">Add New Anime</button>
         </div>
 
 

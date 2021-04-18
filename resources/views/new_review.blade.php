@@ -23,7 +23,7 @@
 
             <div class="input-group">
                 <label for="comment">Comment</label>
-                <textarea id="comment" name="comment" maxlength="500" required></textarea>
+                <textarea id="comment" name="comment" maxlength="1000" required></textarea>
                 @error('comment')
                 <p class="error">{{ $message }}</p>
                 @enderror
@@ -35,7 +35,7 @@
                         <input type="hidden" value="{{ $anime -> id }}" name="anime_id">
 
             <div class="row p-10">
-                <button class="cta">Add New Review</button>
+                <button type="submit" class="cta">Add New Review</button>
             </div>
 
         </form>
