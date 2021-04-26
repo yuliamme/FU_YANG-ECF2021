@@ -22,7 +22,6 @@
         </form>
       </div>
 
-{{--      @yield('reviews')--}}
 
       <div class="reviews">
           @if(count($reviews) > 0)

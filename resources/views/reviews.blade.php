@@ -1,4 +1,5 @@
-@extends('anime')
+<x-layout>
+@extends('user.show')
 
 @section
 
@@ -16,3 +17,5 @@
 {{--</div>--}}
 
 @endsection
+
+</x-layout>

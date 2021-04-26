@@ -29,9 +29,9 @@
                 @enderror
             </div>
 
-{{--                        @auth--}}
-{{--                            <input type="hidden" value="{{ Auth::user()->id }}" name="userid">--}}
-{{--                        @endauth--}}
+                        @auth
+                            <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
+                        @endauth
                         <input type="hidden" value="{{ $anime -> id }}" name="anime_id">
 
             <div class="row p-10">

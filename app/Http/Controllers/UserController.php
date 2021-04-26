@@ -20,7 +20,6 @@ class UserController extends Controller
     }
 
     public function loginAction() {
-
         $data = request() -> validate([
             "username" => "required",
             "password" => "required",
@@ -32,40 +31,32 @@ class UserController extends Controller
         return back()->withErrors([
             'username' => 'The provided credentials do not match our records.',
         ]);
-
     }
 
     public function signupAction() {
-
         $data = request() -> validate([
             "username" => "required",
             "password" => "required",
             "password_confirmation" => "required|same:password"
         ]);
 
-//        dd($data);
-
-        User::create([
+        $user = User::create([
             "username" => $data["username"],
             "password" => Hash::make($data["password"]),
         ]);
 
-//        $user = new User();
-//        $user->username = $validated["username"];
-//        $user->password = Hash::make($validated["password"]);
-//        $user->save();
-//        Auth::login($user);
-
+        Auth::login($user);
         return redirect('/');
-
     }
 
-    public function logout() {
-//        return view('login');
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 
     public function show($id) {
-
         $user = User::find($id);
 
         return view('user.show', [

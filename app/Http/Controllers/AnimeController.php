@@ -9,24 +9,18 @@ use App\Models\Anime;
 class AnimeController extends Controller
 {
     public function index() {
-
         $animes = Anime::all();
-
         return view('anime/index', [
             'animes' => $animes,
         ]);
     }
 
-
     public function show($id) {
-
         $anime  = Anime::find($id);
-
         return view('anime/show', [
             "anime" => $anime,
             "reviews" => $anime->reviews,
             ]);
-
     }
 
     public function create() {
@@ -34,26 +28,16 @@ class AnimeController extends Controller
     }
 
     public function store() {
-
         $data = request() -> validate([
             'title' => ['required', 'max:100' ],
             'description' => ['required', 'max:1000' ],
-//            'user_id' => 'required',
         ]);
 
-//        dd($data);
-        $anime = Anime::create($data);
-//        dd($anime);
-
+        Anime::create($data);
         return redirect('/');
-
     }
 
-
-
-
     public function rank() {
-
         $animes = Anime::join('reviews', 'reviews.anime_id', '=', 'animes.id')
             ->select(DB::raw('round(coalesce(avg(rating),0),2) as average, animes.*'))
 //            ->select(array('animes.*',
@@ -65,8 +49,6 @@ class AnimeController extends Controller
         return view('top', [
             'animes' => $animes,
         ]);
-
     }
-
 
 }

@@ -42,7 +42,7 @@ Route::get('/anime/{id}', [AnimeController::class, 'show'])->name('anime.show');
 
 Route::get('/anime/{id}/new_review', [ReviewController::class, 'create'])->name('review.create');
 
-Route::post('/anime/{id}/review', [ReviewController::class, 'store']);
+Route::post('/anime/{id}/review', [ReviewController::class, 'store'])->name('review.store');
 
 // --------------- /review/{id}/*  individual review : show , edit , update , destroy ---------------
 
@@ -66,17 +66,7 @@ Route::get('/signup', [UserController::class, 'signup'])->name('user.signup');
 
 Route::post('/signup', [UserController::class, 'signupAction']);
 
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');;
 
 
-Route::post('signout', function (Request $request) {
-  Auth::logout();
-  $request->session()->invalidate();
-  $request->session()->regenerateToken();
-  return redirect('/anime');
-});
-
-
-
-//Auth::routes();
 

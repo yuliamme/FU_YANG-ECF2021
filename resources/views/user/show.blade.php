@@ -7,6 +7,12 @@
         <h2 style="margin: 10px 0 30px 0">Profile of {{$user->username}}</h2>
         <hr>
 
+        <div> @yield('reviews')
+        </div>
+
+
+
+
         <div class="reviews">
 
             @if(count($reviews) > 0)

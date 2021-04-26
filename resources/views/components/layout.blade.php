@@ -25,11 +25,15 @@
 
         <nav>
           @auth
-            <div>{{ Auth::user()->username }}</div>
-            <form action="/signout" method="POST">
-              @csrf
-              <button>Se déconnecter</button>
-            </form>
+                @if( $username = Auth::user()->username )@endif
+                @if( $user_id = Auth::user()->id )@endif
+
+                <div><a href="/user/{{ $user_id }}">{{ $username }}</a></div>
+
+                <form action="/logout" method="POST">
+                  @csrf
+                  <button>Se déconnecter</button>
+                </form>
           @endauth
           @guest
             <a href="/login">Se connecter</a>
